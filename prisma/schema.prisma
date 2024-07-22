@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
+  password  String
+  name      String
+  role      Role      @default(CLIENT)
+  createdAt DateTime  @default(now())
+  posts     Post[]
+  comments  Comment[]
+}
+
+model Post {
+  id           Int            @id @default(autoincrement())
+  title        String
+  content      String
+  description  String?
+  tags         String?
+  imageUrl     String?        @map("image_url")
+  published    Boolean        @default(false)
+  author       User           @relation(fields: [authorId], references: [id])
+  authorId     Int            @map("author_id")
+  createdAt    DateTime       @default(now()) @map("created_at")
+  updatedAt    DateTime       @updatedAt @map("updated_at")
+  PostCategory PostCategory[]
+  Comment      Comment[]
+}
+
+model Category {
+  id           Int            @id @default(autoincrement())
+  name         String         @unique
+  PostCategory PostCategory[]
+}
+
+model PostCategory {
+  postId     Int      @map("post_id")
+  categoryId Int      @map("category_id")
+  post       Post     @relation(fields: [postId], references: [id])
+  category   Category @relation(fields: [categoryId], references: [id])
+
+  @@id([postId, categoryId])
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  content   String
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  Int      @map("author_id")
+  post      Post     @relation(fields: [postId], references: [id])
+  postId    Int      @map("post_id")
+  createdAt DateTime @default(now())
+}
+
+enum Role {
+  CLIENT
+  ADMIN
+}
