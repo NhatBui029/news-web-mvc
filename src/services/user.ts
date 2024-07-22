@@ -5,6 +5,7 @@ export interface User {
     id?: number,
     email: string,
     password: string,
+    rePassword?: string,
     name: string
     role?: Role,
     createdAt?: Date
@@ -12,8 +13,8 @@ export interface User {
 }
 
 export enum Role {
-    CLIENT,
-    ADMIN
+    CLIENT = "CLIENT",
+    ADMIN = "ADMIN"
 }
 
 export const getUserByEmail = async (email: string) => {
@@ -26,5 +27,7 @@ export const getUserByEmail = async (email: string) => {
 }
 
 export const createUser = async(data: User)=>{
-    console.log('data', data);
+    return await prisma .user.create({
+        data: data
+    })
 }

@@ -1,0 +1,121 @@
+* {
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+  box-sizing: border-box;
+  margin: 0px; }
+
+p {
+  padding: 0;
+  margin: 0; }
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background-color: #edeff5;
+  height: 71px; }
+
+.containe {
+  margin-left: 30px;
+  margin-right: 30px; }
+
+.about {
+  background-color: #edeff5; }
+
+.slide-show {
+  width: 100%;
+  margin: 72px auto 0px;
+  height: 450px; }
+
+.cards {
+  position: relative;
+  height: 280px;
+  color: #2e2d31;
+  background: #131313;
+  overflow: hidden;
+  border-radius: 20px; }
+
+.temporary_text {
+  font-weight: bold;
+  font-size: 24px;
+  color: #f8f8f8; }
+
+.card_title {
+  font-weight: bold; }
+
+.card_content {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  /* edit the width to fit card */
+  width: 100%;
+  padding-top: 21px;
+  padding-bottom: 25px;
+  padding-left: 33px;
+  padding-right: 33px;
+  background: #edeff5;
+  border-top-left-radius: 6px;
+  /* edit here to change the height of the content box */
+  transform: translateY(150px);
+  transition: transform 0.25s; }
+
+.card_content::before {
+  content: "";
+  position: absolute;
+  top: -47px;
+  right: -45px;
+  width: 100px;
+  height: 100px;
+  transform: rotate(-175deg);
+  border-radius: 50%;
+  box-shadow: inset 48px 48px #edeff5; }
+
+.card_title {
+  color: #131313;
+  line-height: 20px;
+  font-size: 20px; }
+
+.card_subtitle {
+  display: block;
+  font-size: 12px; }
+
+.card_description {
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.5s; }
+
+.cards:hover .card_content {
+  transform: translateY(0); }
+
+.cards:hover .card_description {
+  opacity: 1;
+  transition-delay: 0.25s; }
+
+.main h3 {
+  text-align: center; }
+
+.main .all {
+  margin-top: 40px;
+  font-size: 15px;
+  padding: 12px 30px;
+  border: none;
+  margin-left: 530px;
+  background-color: #2e2b4a; }
+
+.card_content .btn {
+  font-size: 14px; }
+
+.card_content .add-cart {
+  color: #fff;
+  background-color: #1a6fb7;
+  margin-right: 16px; }
+
+.card_content .buy-car {
+  background-color: rgba(26, 111, 183, 0);
+  color: #1a6fb7;
+  border: 1px solid #1a6fb7; }
+
+.card_content .add-cart i {
+  margin-right: 8px; }
