@@ -13,7 +13,8 @@ model User {
   password  String
   name      String
   role      Role      @default(CLIENT)
-  createdAt DateTime  @default(now())
+  createdAt DateTime  @default(now()) @map("created_at")
+  deletedAt DateTime? @map("deleted_at")
   posts     Post[]
   comments  Comment[]
 }
