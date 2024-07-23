@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createUser, getUserByEmail, User } from "../services/user";
+import { createUser, getUserByEmail, Role, User } from "../services/user";
 import { jwtSign } from "../services/jwt";
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
@@ -32,9 +32,7 @@ export const postLogin = async (req: Request, res: Response) => {
     const token = await jwtSign(user?.id, user.role);
     res.cookie('token', token);
 
-    res.render('client/home', {
-        layout: 'client'
-    })
+    res.redirect(user.role == Role.CLIENT ? '/client' : '/admin')
   } catch (error) {
     console.log("🚀 ~ postLogin ~ error:", error);
   }
