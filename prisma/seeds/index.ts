@@ -1,18 +1,19 @@
-import { PrismaClient } from '@prisma/client'
+import prisma from "../../src/libs/db-client";
+import categorySeed from "./category";
+import userAdminSeed from "./user-admin";
 
-const prisma = new PrismaClient()
+const seed = async () => {
+  await userAdminSeed();
+  await categorySeed();
+};
 
-const seed = async()=>{
-
-}
-
-void(async()=>{
-    try {
-        await seed();
-    } catch (e) {
-        console.log("🚀 ~ void ~ e:", e)
-        process.exit(1);
-    } finally{
-        await prisma.$disconnect();
-    }
-})
+void (async () => {
+  try {
+    await seed();
+  } catch (e) {
+    console.error(e);
+    process.exit(1);
+  } finally {
+    await prisma.$disconnect();
+  }
+})();

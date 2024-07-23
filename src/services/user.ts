@@ -1,5 +1,4 @@
-import { PrismaClient } from "@prisma/client"
-const prisma = new PrismaClient()
+import prisma from '../libs/db-client'
 
 export interface User {
     id?: number,
@@ -27,7 +26,7 @@ export const getUserByEmail = async (email: string) => {
 }
 
 export const createUser = async(data: User)=>{
-    return await prisma .user.create({
+    return await prisma.user.create({
         data: data
     })
 }

@@ -15,46 +15,36 @@ model User {
   role      Role      @default(CLIENT)
   createdAt DateTime  @default(now()) @map("created_at")
   deletedAt DateTime? @map("deleted_at")
-  posts     Post[]
   comments  Comment[]
 }
 
 model Post {
-  id           Int            @id @default(autoincrement())
-  title        String
-  content      String
-  description  String?
-  tags         String?
-  imageUrl     String?        @map("image_url")
-  published    Boolean        @default(false)
-  author       User           @relation(fields: [authorId], references: [id])
-  authorId     Int            @map("author_id")
-  createdAt    DateTime       @default(now()) @map("created_at")
-  updatedAt    DateTime       @updatedAt @map("updated_at")
-  PostCategory PostCategory[]
-  Comment      Comment[]
+  id          Int       @id @default(autoincrement())
+  title       String
+  content     String    @db.VarChar(5000)
+  description String?  @db.VarChar(1000)
+  keywords        String?
+  imageUrl    String?   @map("image_url")
+  published   Boolean   @default(false)
+  author      String
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+  Comment     Comment[]
+  category    Category  @relation(fields: [categoryId], references: [id])
+  categoryId  Int       @map("category_id")
 }
 
 model Category {
-  id           Int            @id @default(autoincrement())
-  name         String         @unique
-  PostCategory PostCategory[]
-}
-
-model PostCategory {
-  postId     Int      @map("post_id")
-  categoryId Int      @map("category_id")
-  post       Post     @relation(fields: [postId], references: [id])
-  category   Category @relation(fields: [categoryId], references: [id])
-
-  @@id([postId, categoryId])
+  id   Int    @id @default(autoincrement())
+  name String @unique
+  post Post[]
 }
 
 model Comment {
   id        Int      @id @default(autoincrement())
   content   String
-  author    User     @relation(fields: [authorId], references: [id])
-  authorId  Int      @map("author_id")
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int      @map("user_id")
   post      Post     @relation(fields: [postId], references: [id])
   postId    Int      @map("post_id")
   createdAt DateTime @default(now())

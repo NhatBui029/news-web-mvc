@@ -5,6 +5,7 @@ const route = express.Router();
 
 route.post('/login',postLogin)
 route.post('/register',postRegister)
+route.get('/logout',getLogin)
 route.get('/',getLogin)
 
 module.exports= route;

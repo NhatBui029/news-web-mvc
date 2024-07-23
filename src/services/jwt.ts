@@ -12,3 +12,7 @@ export const jwtSign = async (id: number, role: string) => {
     }
   );
 };
+
+export const jwtVerify = async (token: string) => {
+  return await jwt.verify(token, process.env.SECRET_KEY);
+};
