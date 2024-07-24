@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
-import { createPost } from "../services/post";
+import { createPost, getPosts } from "../services/post";
 
-export const getHomeAdmin = (req: Request, res: Response) => {
+export const getHomeAdmin =async (req: Request, res: Response) => {
   res.render("admin/home", {
     layout: "admin",
+    posts: await getPosts()
   });
 };
 

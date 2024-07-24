@@ -1,5 +1,6 @@
 import express, { Express} from "express";
 import dotenv from "dotenv";
+import { formatDate } from "./services/post";
 const morgan = require('morgan')
 const handlebars = require('express-handlebars');
 const path = require('path');
@@ -28,7 +29,7 @@ app.engine(
     handlebars.engine({
         extname: '.hbs',
         helpers: {
-           
+            formatDate: (date: Date) => formatDate(date),
         }
     }),
 )
