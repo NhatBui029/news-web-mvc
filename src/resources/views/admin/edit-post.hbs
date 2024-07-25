@@ -1,0 +1,63 @@
+<div class="form-container">
+  <form action="/admin/edit/post/{{id}}" method="POST">
+    <div class="form-group">
+      <label for="title">Tiêu đề:</label>
+      <input type="text" id="title" name="title" required value="{{post.title}}"/>
+    </div>
+    <div class="form-group">
+      <label for="content">Nội dung:</label>
+      <textarea
+        id="content"
+        name="content"
+        maxlength="5000"
+        required
+      >{{post.content}}</textarea>
+    </div>
+    <div class="form-group">
+      <label for="description">Mô tả:</label>
+      <input type="text" id="description" name="description" value="{{post.description}}"/>
+    </div>
+    <div class="form-group">
+      <label for="keywords">Từ khoá:</label>
+      <input type="text" id="keywords" name="keywords" value="{{post.keywords}}"/>
+    </div>
+    <div class="form-group">
+      <label for="imageUrl">Đường dẫn ảnh:</label>
+      <input type="text" id="imageUrl" name="imageUrl" value="{{post.imageUrl}}"/>
+    </div>
+    <div class="form-group">
+      <label for="published">Công khai:</label>
+      <input type="checkbox" id="published" name="published" checked={{post.published}}/>
+    </div>
+    <div class="form-group">
+      <label for="author">Tác giả:</label>
+      <input type="text" id="author" name="author" required value="{{post.author}}"/>
+    </div>
+    <div class="form-group">
+      <label for="categoryId">Chủ đề:</label>
+      <select id="categoryId" name="categoryId" required >
+        <option value="20">Ẩm thực</option>
+        <option value="14">Bất động sản</option>
+        <option value="9">Chính trị</option>
+        <option value="16">Công nghệ</option>
+        <option value="13">Du lịch</option>
+        <option value="11">Đời sống</option>
+        <option value="7">Giải trí</option>
+        <option value="17">Giáo dục</option>
+        <option value="10">Khoa học</option>
+        <option value="1">Kinh doanh</option>
+        <option value="18">Môi trường</option>
+        <option value="12">Ô tô - Xe máy</option>
+        <option value="4">Pháp luật</option>
+        <option value="6">Sức khỏe</option>
+        <option value="5">Tài chính</option>
+        <option value="3">Thế giới</option>
+        <option value="2">Thể thao</option>
+        <option value="8">Thời tiết</option>
+        <option value="19">Văn hóa</option>
+        <option value="15">Xã hội</option>
+      </select>
+    </div>
+    <button type="submit">Đăng ngay</button>
+  </form>
+</div>

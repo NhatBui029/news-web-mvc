@@ -22,13 +22,15 @@ model Post {
   id          Int       @id @default(autoincrement())
   title       String
   content     String    @db.VarChar(5000)
-  description String?  @db.VarChar(1000)
-  keywords        String?
+  description String?   @db.VarChar(1000)
+  keywords    String?
   imageUrl    String?   @map("image_url")
   published   Boolean   @default(false)
   author      String
+  view        Int       @default(0)
   createdAt   DateTime  @default(now()) @map("created_at")
   updatedAt   DateTime  @updatedAt @map("updated_at")
+  deletedAt   DateTime? @updatedAt @map("deleted_at")
   Comment     Comment[]
   category    Category  @relation(fields: [categoryId], references: [id])
   categoryId  Int       @map("category_id")

@@ -7,9 +7,9 @@ export default async function userAdminSeed() {
     console.log('log seed')
     await prisma.user.create({
         data: {
-            email: faker.internet.email(),
+            email: 'buituannhat1402@gmail.com',
             password: await bcrypt.hash('123', 10),
-            name: 'Theodore Bui',
+            name: 'Bùi Tuấn Nhật',
             role: Role.ADMIN
         }
     })
