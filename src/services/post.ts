@@ -8,6 +8,7 @@ export interface Post {
   keywords: string;
   imageUrl: string;
   published: boolean;
+  view?: number;
   author: string;
   createdAt?: Date;
   updatedAt?: Date;
@@ -18,7 +19,7 @@ export const createPost = async (data: Post) => {
   return await prisma.post.create({
     data: {
       ...data,
-      deletedAt: null
+      deletedAt: null,
     },
   });
 };
@@ -26,8 +27,8 @@ export const createPost = async (data: Post) => {
 export const getPosts = async () => {
   return await prisma.post.findMany({
     where: {
-      deletedAt: null
-    }
+      deletedAt: null,
+    },
   });
 };
 
@@ -35,42 +36,59 @@ export const getPostsStored = async () => {
   return await prisma.post.findMany({
     where: {
       deletedAt: {
-        not: null
-      }
-    }
+        not: null,
+      },
+    },
   });
 };
 
-export const updatePost = async (id: number,data: Post | {deletedAt: Date|null}) => {
+export const getPostsByCategory = async (
+  id: number = 0,
+  categoryId: number = 1
+) => {
+  return await prisma.post.findMany({
+    where: {
+      categoryId: categoryId,
+      id: {
+        not: id,
+      },
+      deletedAt: null,
+    },
+  });
+};
+
+export const updatePost = async (
+  id: number,
+  data: Post | { deletedAt: Date | null } | { view: number }
+) => {
+  console.log(data)
   return await prisma.post.update({
     where: {
-      id: id
+      id: id,
     },
-    data: data
-  })
+    data: data,
+  });
 };
 
 export const removePost = async (id: number) => {
   return await prisma.post.update({
     where: {
-      id: id
+      id: id,
     },
     data: {
-      deletedAt: new Date().toISOString()
-    }
-  })
+      deletedAt: new Date().toISOString(),
+    },
+  });
 };
-
 
 export const getPostById = async (id: number = 1) => {
   return await prisma.post.findFirst({
     where: {
       id: id,
-      deletedAt: null
-    }
+      deletedAt: null,
+    },
   });
 };
-
 
 export const formatDate = (date: Date) => {
   const day = date.getDate();
@@ -80,4 +98,4 @@ export const formatDate = (date: Date) => {
   const minutes = date.getMinutes();
   const seconds = date.getSeconds();
   return `${hours}:${minutes}:${seconds} - ${day}/${month}/${year}`;
-}
+};

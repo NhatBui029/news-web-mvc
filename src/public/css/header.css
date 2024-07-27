@@ -5,7 +5,8 @@
   font-size: 16px;
   font-weight: 550;
   display: flex;
-  justify-content: space-between; }
+  justify-content: space-between;
+  background-color: azure; }
 
 #menu ul {
   display: flex;
@@ -14,7 +15,8 @@
 #menu > ul > li {
   padding: 25px 25px;
   list-style: none;
-  position: relative; }
+  position: relative;
+  cursor: pointer; }
 
 #menu ul li:hover .content-item {
   display: block; }
@@ -29,7 +31,7 @@ a:hover {
 #menu img {
   width: 146px;
   height: 46px;
-  margin-right: 25px; }
+  margin: 15px  25px; }
 
 .content-item {
   display: none;

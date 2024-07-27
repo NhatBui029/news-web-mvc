@@ -1,6 +1,6 @@
 import prisma from "../../src/libs/db-client";
 import { faker } from "@faker-js/faker";
-const categories = [
+export const categories = [
   "Thế giới",
   "Kinh doanh",
   "Thể thao",
