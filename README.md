@@ -1,6 +1,6 @@
-# Express.js + Handlebars Project
+# News Project
 
-This is an Express.js project utilizing Handlebars for templating. Below are the steps to set up and run the project.
+A news reading website project built with Express.js and Handlebars, providing news management functionality for admins and news reading functionality for clients.
 
 ## Prerequisites
 
@@ -10,13 +10,40 @@ This is an Express.js project utilizing Handlebars for templating. Below are the
 ## Getting Started
 
 ### 1. Clone the Repository
-
 ```bash
 git clone <repository-url>
 cd <repository-directory>
-## 
-### 2.  Install Dependencies
+```
 
+#### 2.  Install Dependencies
+Install the necessary packages using npm:
 ```bash
-git clone <repository-url>
-cd <repository-directory>
+npm install
+```
+### 3.  Run Prisma Migrations
+Set up the database schema with Prisma:
+```bash
+npx prisma db push
+```
+### 4.  Seed the Database
+Populate the database with initial data:
+```bash
+npx prisma db seed
+```
+
+### 5.  Start the Server
+Run the development server:
+```bash
+npm run dev
+```
+
+### 6. Compile SCSS Files
+Watch for changes in SCSS files and compile them:
+```bash
+npm run watch
+```
+
+
+
+
+
