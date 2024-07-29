@@ -11,8 +11,8 @@ A news reading website project built with Express.js and Handlebars, providing n
 
 ### 1. Clone the Repository
 ```bash
-git clone <repository-url>
-cd <repository-directory>
+git clone https://github.com/NhatBui029/news-web-mvc.git
+cd news-web-mvc
 ```
 
 #### 2.  Install Dependencies
